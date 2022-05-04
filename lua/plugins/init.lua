@@ -26,12 +26,6 @@ local plugins = {
       end,
    },
 
-   ["NvChad/nvterm"] = {
-      config = function()
-         require "plugins.configs.nvterm"
-      end,
-   },
-
    ["kyazdani42/nvim-web-devicons"] = {
       after = "base46",
       config = function()
@@ -124,13 +118,6 @@ local plugins = {
       opt = true,
       setup = function()
          require("core.utils").packer_lazy_load "vim-matchup"
-      end,
-   },
-
-   ["max397574/better-escape.nvim"] = {
-      event = "InsertCharPre",
-      config = function()
-         require("plugins.configs.others").better_escape()
       end,
    },
 
