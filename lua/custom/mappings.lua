@@ -39,4 +39,24 @@ M.dapui = function()
   map('n', '<leader>dB', ':lua require("dapui").float_element("breakpoints") <CR>')
 end
 
+M.telescope = function()
+   map("n", "<leader>o", "<cmd> :Telescope buffers <CR>")
+   map("n", "<leader>ff", "<cmd> :Telescope find_files <CR>")
+   map("n", "<leader>fa", "<cmd> :Telescope find_files follow=true no_ignore=true hidden=true <CR>")
+   map("n", "<leader>gc", "<cmd> :Telescope git_commits <CR>")
+   map("n", "<leader>gs", "<cmd> :Telescope git_status <CR>")
+   map("n", "<leader>fh", "<cmd> :Telescope help_tags <CR>")
+   map("n", "<leader>fs", "<cmd> :Telescope live_grep <CR>")
+   map("n", "<leader>fo", "<cmd> :Telescope oldfiles <CR>")
+   map("n", "<leader>ct", "<cmd> :Telescope themes <CR>")
+
+   -- pick a hidden term
+   map("n", "<leader>W", "<cmd> :Telescope terms <CR>")
+end
+
+M.nvimtree = function()
+   map("n", "<leader>E", "<cmd> :NvimTreeFocus <CR>")
+   map("n", "<leader>e", "<cmd> :NvimTreeToggle <CR>")
+end
+
 return M

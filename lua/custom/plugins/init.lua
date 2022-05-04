@@ -107,7 +107,7 @@ local M = {
             -- end,
         },
        } -- use defaults
-       -- lsp_attach()
+       require("core.mappings").lspconfig()
      end,
      setup = function()
        vim.api.nvim_set_keymap('n', '<leader>r', ':FlutterReload <CR>', {})
@@ -169,13 +169,35 @@ local M = {
     end,
   },
 
-}
+  ----------------- PLUGIN OVERRIDES ---------------
 
--- Mappings overrides
-M.plugins = {
-  user = {
+  ["nvim-telescope/telescope.nvim"] = {
+      setup = function()
+         require("custom.mappings").telescope()
+      end,
 
-  }
+      config = function()
+         require "custom.plugins.telescope"
+      end,
+   },
+
+   ["kyazdani42/nvim-tree.lua"] = {
+      cmd = { "NvimTreeToggle", "NvimTreeFocus" },
+      setup = function()
+         require("custom.mappings").nvimtree()
+      end,
+   },
+
+   ["lewis6991/gitsigns.nvim"] = {
+      opt = true,
+      config = function()
+         require("custom.plugins.gitsigns").configure()
+      end,
+      setup = function()
+         require("core.utils").packer_lazy_load "gitsigns.nvim"
+      end,
+   },
+
 }
 
 return M

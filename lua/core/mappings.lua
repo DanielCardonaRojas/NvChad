@@ -49,11 +49,6 @@ map("n", "<leader>n", "<cmd> :set nu! <CR>")
 map("n", "<leader>rn", "<cmd> :set rnu! <CR>") -- relative line numbers
 map("n", "<C-s>", "<cmd> :w <CR>") -- ctrl + s to save file
 
--- terminal mappings
-
--- get out of terminal mode
-map("t", { "jk" }, "<C-\\><C-n>")
-
 -- Add Packer commands because we are not loading it at startup
 
 local packer_cmd = function(callback)
