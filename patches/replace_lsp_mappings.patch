@@ -1,0 +1,50 @@
+diff --git a/lua/core/mappings.lua b/lua/core/mappings.lua
+index df44c7b..76a3bce 100644
+--- a/lua/core/mappings.lua
++++ b/lua/core/mappings.lua
+@@ -120,7 +120,7 @@ M.lspconfig = function()
+       vim.lsp.buf.implementation()
+    end)
+ 
+-   map("n", "<C-k>", function()
++   map("n", "gk", function()
+       vim.lsp.buf.signature_help()
+    end)
+ 
+@@ -128,11 +128,11 @@ M.lspconfig = function()
+       vim.lsp.buf.type_definition()
+    end)
+ 
+-   map("n", "<leader>ra", function()
++   map("n", "<F2>", function()
+       vim.lsp.buf.rename()
+    end)
+ 
+-   map("n", "<leader>ca", function()
++   map("n", "<leader>.", function()
+       vim.lsp.buf.code_action()
+    end)
+ 
+@@ -144,11 +144,11 @@ M.lspconfig = function()
+       vim.diagnostic.open_float()
+    end)
+ 
+-   map("n", "[d", function()
++   map("n", "[e", function()
+       vim.diagnostic.goto_prev()
+    end)
+ 
+-   map("n", "d]", function()
++   map("n", "e]", function()
+       vim.diagnostic.goto_next()
+    end)
+ 
+@@ -156,7 +156,7 @@ M.lspconfig = function()
+       vim.diagnostic.setloclist()
+    end)
+ 
+-   map("n", "<leader>fm", function()
++   map("n", "<leader>lm", function()
+       vim.lsp.buf.formatting()
+    end)
+ 
