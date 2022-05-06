@@ -1,4 +1,14 @@
+local opt = vim.opt
 local M = {}
+
+local g = vim.g
+g.ultest_running_sign = "喇"
+g.ultest_pass_sign = ""
+g.ultest_not_run_sign = ""
+g.ultest_fail_sign = ""
+g.ultest_use_pty = 0
+g.ultest_summary_width = 55
+-- ['test#javascript#reactscripts#options'] = "--watchAll=false"
 
 function M.configure()
     local builders = {
