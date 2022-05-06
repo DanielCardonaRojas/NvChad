@@ -1,4 +1,9 @@
 local map = require("core.utils").map
+local opt = vim.opt
+
+-------------------------------  CUSTOM OPTIONS ---------------------------
+opt.updatetime = 1000
+opt.swapfile = false
 
 -------------------------------  CUSTOM MAPPINGS ---------------------------
 map("n", "<leader>w", "<c-w>")
@@ -20,6 +25,7 @@ map("t", "<c-k>", "<C-\\><C-n><C-w>k")
 map("t", "<c-j>", "<C-\\><C-n><C-w>j")
 map("t", "<c-l>", "<C-\\><C-n><C-w>l")
 map("t", "<c-h>", "<C-\\><C-n><C-w>h")
+
 -------------------------------  CUSTOM AUTOCOMMANDS ---------------------------
 vim.cmd [[ autocmd BufEnter *.dart :lua vim.api.nvim_buf_set_option(0, "commentstring", "// %s") ]]
 vim.cmd [[ autocmd BufEnter NvimTree :NvimTreeRefresh ]]

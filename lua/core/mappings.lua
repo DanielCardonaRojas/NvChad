@@ -148,7 +148,7 @@ M.lspconfig = function()
       vim.diagnostic.goto_prev()
    end)
 
-   map("n", "e]", function()
+   map("n", "]e", function()
       vim.diagnostic.goto_next()
    end)
 
