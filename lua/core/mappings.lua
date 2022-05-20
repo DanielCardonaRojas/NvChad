@@ -140,7 +140,7 @@ M.lspconfig = function()
       vim.lsp.buf.references()
    end)
 
-   map("n", "<leader>f", function()
+   map("n", "ge", function()
       vim.diagnostic.open_float()
    end)
 

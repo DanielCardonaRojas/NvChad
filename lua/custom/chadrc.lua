@@ -31,7 +31,16 @@ M.plugins = {
             allow_resize = true,
          },
       },
-   }
+
+      ["akinsho/bufferline.nvim"] = {
+         options = {
+            max_name_length = 25,
+            max_prefix_length = 25,
+            tab_size = 30,
+         },
+      }
+   },
+
 }
 
 return M
