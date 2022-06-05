@@ -52,6 +52,8 @@ M.mappings = {
         ["<leader>fh"] = { "<cmd> Telescope help_tags <CR>", "  help page" },
         ["<leader>fo"] = { "<cmd> Telescope oldfiles <CR>", "   find oldfiles" },
         ["<leader>tk"] = { "<cmd> Telescope keymaps <CR>", "   show keys" },
+        -- lsp
+        ["<leader>ls"] = { "<cmd> Telescope lsp_document_symbols <CR>", "  document symbols" },
 
         -- git
         ["<leader>cm"] = { "<cmd> Telescope git_commits <CR>", "   git commits" },
@@ -83,6 +85,7 @@ M.plugins = {
           ensure_installed = {
             "dart",
             "swift",
+            "bash",
             "rust",
             "go",
          },
@@ -112,6 +115,16 @@ M.plugins = {
             delay = 1000,
             ignore_whitespace = false,
          },
+      },
+      ["hrsh7th/nvim-cmp"] = {
+        mappings = {
+          ["<C-k>"] = function()
+            require('cmp').mapping.select_prev_item()
+          end,
+          ["<C-j>"] = function()
+            require('cmp').mapping.select_next_item()
+          end,
+        }
       },
       ["nvim-telescope/telescope.nvim"] = {
          defaults = {

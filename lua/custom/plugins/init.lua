@@ -108,11 +108,15 @@ local M = {
             --   require("dap.ext.vscode").load_launchjs()
             -- end,
         },
-        -- lsp = {
-        --   on_attach = require('plugins.configs.lspconfig').on_attach
-        -- }
-       } -- use defaults
-       -- require("core.mappings").lspconfig()
+        lsp = {
+          color = {
+            virtual_text = false,
+          },
+          on_attach = function(client, bufnr)
+            require('plugins.configs.lspconfig').on_attach(client, bufnr)
+          end
+        }
+       }
      end,
      setup = function()
        vim.api.nvim_set_keymap('n', '<leader>r', ':FlutterReload <CR>', {})
@@ -123,12 +127,12 @@ local M = {
    ['vim-test/vim-test'] = {},
 
    ["petertriho/nvim-scrollbar"] = {
-     config = function() 
+     config = function()
       require("scrollbar").setup({
           excluded_filetypes = {
-            'toggleterm', 
-            'Trouble', 
-            'NvimTree', 
+            'toggleterm',
+            'Trouble',
+            'NvimTree',
             'dapui_scopes',
             'dapui_breakpoints',
             'dapui_stacks',
@@ -148,9 +152,9 @@ local M = {
     end
   },
 
-  ["rcarriga/nvim-dap-ui"] = { 
+  ["rcarriga/nvim-dap-ui"] = {
     requires = {"mfussenegger/nvim-dap"},
-    config = function() 
+    config = function()
       require('dapui').setup({
         sidebar = {
           size = 60,
@@ -180,6 +184,16 @@ local M = {
   ["goolord/alpha-nvim"] = {
      disable = false,
   },
+
+  ----------------- OVERRIDES ---------------
+
+  ["feline-nvim/feline.nvim"] = {
+     after = "nvim-web-devicons",
+     config = function()
+        require "custom.plugins.statusline"
+     end,
+  },
+
 }
 
 return M
