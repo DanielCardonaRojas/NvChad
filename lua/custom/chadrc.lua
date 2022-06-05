@@ -76,7 +76,7 @@ M.plugins = {
    },
    override = {
       ["wbthomason/packer.nvim"] = {
-        snapshot = "stable_chad",
+        -- snapshot = "stable_chad",
         snapshot_path = vim.fn.expand "$HOME" .. "/.config/nvim",
       },
       ["nvim-treesitter/nvim-treesitter"] = {
