@@ -108,6 +108,9 @@ local M = {
             --   require("dap.ext.vscode").load_launchjs()
             -- end,
         },
+        -- lsp = {
+        --   on_attach = require('plugins.configs.lspconfig').on_attach
+        -- }
        } -- use defaults
        -- require("core.mappings").lspconfig()
      end,
