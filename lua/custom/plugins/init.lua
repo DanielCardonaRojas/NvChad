@@ -184,16 +184,6 @@ local M = {
   ["goolord/alpha-nvim"] = {
      disable = false,
   },
-
-  ----------------- OVERRIDES ---------------
-
-  ["feline-nvim/feline.nvim"] = {
-     after = "nvim-web-devicons",
-     config = function()
-        require "custom.plugins.statusline"
-     end,
-  },
-
 }
 
 return M

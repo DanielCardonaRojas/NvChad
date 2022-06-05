@@ -16,6 +16,7 @@ map('c', '<c-k>', '<c-p>')
 map('n', '<CR>', ':nohl<CR>')
 map("n", "<c-j>", "<c-w>j")
 map("n", "<c-k>", "<c-w>k")
+map("n", "<leader>tT", ":lua require('base46').toggle_transparency() <CR>")
 
 -- Terminal
 map("t", "<c-k>", "<C-\\><C-n><C-w>k")

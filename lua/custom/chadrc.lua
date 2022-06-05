@@ -1,6 +1,7 @@
 local M = {}
 
 M.ui = {
+   transparency = false,
    theme = "catppuccin",
    theme_toggle = { "catppuccin", "onedark" },
 }
