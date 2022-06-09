@@ -15,15 +15,16 @@ local sep_style = {
       left = "█",
       right = "█",
    },
+
+   arrow = {
+      left = "",
+      right = "",
+   },
 }
 
 local user_sep_style = require("core.utils").load_config().plugins.options.statusline.separator_style
 local sep_l = sep_style[user_sep_style]["left"]
 local sep_r = sep_style[user_sep_style]["right"]
-
-local width_below = function(text, thresh)
-   return vim.o.columns / #text >= thresh
-end
 
 local modes = {
    ["n"] = { "NORMAL", "St_NormalMode" },
@@ -70,15 +71,25 @@ M.fileInfo = function()
       filename = " " .. filename .. " "
    end
 
-   local ft_icon = require("nvim-web-devicons").get_icon(filename, extension)
+   local devicons_present, devicons = pcall(require, "nvim-web-devicons")
+
+   if not devicons_present then
+      return " "
+   end
+
+   local ft_icon = devicons.get_icon(filename, extension)
    icon = (ft_icon ~= nil and " " .. ft_icon) or icon
 
    return "%#St_file_info#" .. icon .. filename .. "%#St_file_sep#" .. sep_r
 end
 
 M.gps = function()
-   local gps_present, gps = pcall(require, "nvim-gps")
-   return gps_present and gps.is_available() and gps.get_location() or ""
+   if vim.o.columns < 140 or not package.loaded["nvim-gps"] then
+      return ""
+   end
+
+   local gps = require "nvim-gps"
+   return (gps.is_available() and gps.get_location()) or ""
 end
 
 M.git = function()
@@ -101,7 +112,7 @@ end
 M.LSP_progress = function()
    local Lsp = vim.lsp.util.get_progress_messages()[1]
 
-   if not Lsp then
+   if vim.o.columns < 120 or not Lsp then
       return ""
    end
 
@@ -113,7 +124,7 @@ M.LSP_progress = function()
    local frame = math.floor(ms / 120) % #spinners
    local content = string.format(" %%<%s %s %s (%s%%%%) ", spinners[frame + 1], title, msg, percentage)
 
-   return width_below(content, 5.3) and ("%#St_LspProgress#" .. content) or ""
+   return ("%#St_LspProgress#" .. content) or ""
 end
 
 M.LSP_Diagnostics = function()
@@ -137,19 +148,18 @@ end
 M.LSP_status = function()
    local lsp_attached = next(vim.lsp.buf_get_clients()) ~= nil
    local content = lsp_attached and "   LSP ~ " .. vim.lsp.get_active_clients()[1].name .. " " or false
-   return content and width_below(content, 5.3) and ("%#St_LspStatus#" .. content) or ""
+   return content and ("%#St_LspStatus#" .. content) or ""
 end
 
 M.cwd = function()
-   local left_sep = "%#ST_EmptySpace2#" .. sep_l .. "%#St_cwd_sep#" .. sep_l
-   local dir_icon = "%#St_cwd_icon#" .. " "
+   local left_sep = "%#St_cwd_sep#" .. sep_l
+   local dir_icon = "%#St_cwd_icon#" .. " "
    local dir_name = "%#St_cwd_text#" .. " " .. fn.fnamemodify(fn.getcwd(), ":t") .. " "
-
-   return left_sep .. dir_icon .. dir_name
+   return (vim.o.columns > 120 and left_sep .. dir_icon .. dir_name) or ""
 end
 
 M.cursor_position = function()
-   local left_sep = "%#ST_EmptySpace#" .. sep_l .. "%#St_pos_sep#" .. sep_l
+   local left_sep = "%#St_pos_sep#" .. sep_l
    local icon = "%#St_pos_icon#" .. " "
 
    local current_line = fn.line "."
