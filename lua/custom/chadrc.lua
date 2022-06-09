@@ -2,8 +2,8 @@ local M = {}
 
 M.ui = {
    transparency = false,
-   theme = "catppuccin",
-   theme_toggle = { "catppuccin", "onedark" },
+   theme = "everforest_light",
+   theme_toggle = { "catppuccin", "everforest_light" },
 }
 
 local userPlugins = require "custom.plugins"
