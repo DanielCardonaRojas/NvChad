@@ -96,17 +96,8 @@ local M = {
      config = function()
        require("flutter-tools").setup{
         debugger = { -- integrate with nvim dap + install dart code debugger
-            enabled = true,
-            run_via_dap = true,
-            -- register_configurations = function(paths)
-            --   require("dap").configurations.dart = {
-            --     name = "Launch Flutter",
-            --     request = "launch",
-            --     type = "dart",
-            --   }
-            --
-            --   require("dap.ext.vscode").load_launchjs()
-            -- end,
+            enabled = false,
+            run_via_dap = false,
         },
         lsp = {
           color = {
@@ -117,10 +108,11 @@ local M = {
           end
         }
        }
-     end,
-     setup = function()
+
        vim.api.nvim_set_keymap('n', '<leader>r', ':FlutterReload <CR>', {})
        vim.api.nvim_set_keymap('n', '<leader>R', ':FlutterRestart <CR>', {})
+     end,
+     setup = function()
      end
   },
 

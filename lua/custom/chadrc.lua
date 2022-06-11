@@ -2,7 +2,7 @@ local M = {}
 
 M.ui = {
    transparency = false,
-   theme = "everforest_light",
+   theme = "catppuccin",
    theme_toggle = { "catppuccin", "everforest_light" },
 }
 
