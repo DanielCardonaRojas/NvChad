@@ -14,6 +14,12 @@ local setupAdapters = function()
     args = {"debug_adapter", "--test"}
   }
 
+  dap.adapters.python3 = {
+    type = 'executable',
+    command = 'python3',
+    args = { '-m', 'debugpy.adapter' },
+  }
+
   dap.adapters.flutter = {
     type = "executable",
     command = "flutter",
@@ -26,6 +32,15 @@ local setupAdapters = function()
 end
 
 local setupConfigurations = function()
+  dap.configurations.python = {
+    {
+      type = "python3",
+      request = "launch",
+      name = "Launch python3",
+      program = "${file}",
+    }
+  }
+
   dap.configurations.dart = {
     {
       type = "flutter",
@@ -65,6 +80,7 @@ end
 M.configure = function()
   setupAdapters()
   setupConfigurations()
+  require('dap').defaults.fallback.exception_breakpoints = {}
   vim.fn.sign_define("DapBreakpoint", { text = "", texthl = 'DiagnosticHint', linehl = "", numhl = "" })
   vim.fn.sign_define('DapBreakpointRejected', {text='', texthl= '', linehl='', numhl=''})
   vim.fn.sign_define("DapStopped", { text = "", texthl = 'DiagnosticInformation', linehl = "", numhl = "" })

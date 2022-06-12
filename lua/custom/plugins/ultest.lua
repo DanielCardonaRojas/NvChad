@@ -12,19 +12,26 @@ g.ultest_summary_width = 55
 
 function M.configure()
     local builders = {
-        dart = function(cmd) 
+        dart = function(cmd)
+          -- print(unpack(cmd))
+          -- print("Testing: " .. cmd[4])
           return {
             dap = {
-              type = "dart",
+              type = "dart_test",
               request = "launch",
-              name = "Launch flutter",
+              name = "Debug test",
               dartSdkPath = os.getenv('HOME').."/fvm/default/bin/cache/dart-sdk/",
               flutterSdkPath = os.getenv('HOME').."/fvm/default/",
-              -- program = "${workspaceFolder}/lib/main.dart",
-              -- cwd = "${workspaceFolder}",
-            }
+              program = "${file}",
+              args = {'--plain-name', cmd[4]}
+            },
+            parse_result = function(lines)
+              print(unpack(cmd))
+              local isEmpty = next(lines) == nil
+              return isEmpty and 0 or 1
+            end
           }
-        end, 
+        end,
         python = function(cmd)
             local non_modules = {"python", "pipenv", "poetry"}
 
