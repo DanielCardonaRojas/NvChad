@@ -105,6 +105,7 @@ local M = {
           },
           on_attach = function(client, bufnr)
             require('plugins.configs.lspconfig').on_attach(client, bufnr)
+            client.resolved_capabilities.document_formatting = true
           end
         }
        }

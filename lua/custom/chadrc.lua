@@ -23,6 +23,13 @@ M.mappings = {
   lspconfig = {
     n = {
       ["<leader>ls"] = "",
+      ["<leader>ca"] = "",
+      ["<leader>."] = {
+         function()
+            vim.lsp.buf.code_action()
+         end,
+         "   lsp code_action",
+      },
       ["<leader>lm"] = {
         function ()
           vim.lsp.buf.formatting()
@@ -72,6 +79,11 @@ M.mappings = {
 
 -------------------------- PLUGINS --------------------------
 M.plugins = {
+   options = {
+      lspconfig = {
+         setup_lspconf = "custom.plugins.lspconfig",
+      },
+   },
    user = userPlugins,
    remove = {
       "NvChad/nvterm",
