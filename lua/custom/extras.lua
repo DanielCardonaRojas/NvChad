@@ -23,7 +23,7 @@ function M.find_configs()
   require("telescope.builtin").find_files {
     prompt_title = "Config Find",
     results_title = nil,
-    path_display = { "smart" },
+    path_display = { "truncate" },
     search_dirs = searchDirs,
     cwd = "~/.config/nvim/",
     layout_strategy = "horizontal",
