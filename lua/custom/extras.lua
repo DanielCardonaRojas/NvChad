@@ -7,6 +7,7 @@ local searchDirs = {
       "~/.config/alacritty",
       "~/.config/yabai",
       "~/.config/scripts",
+      "~/.config/lazygit",
       "~/.config/nixpkgs",
       "~/.config/my-snippets",
       "~/.zshrc",

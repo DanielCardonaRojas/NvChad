@@ -34,3 +34,5 @@ vim.cmd [[ autocmd BufWritePre *.dart lua vim.lsp.buf.formatting() ]]
 vim.cmd [[ autocmd BufEnter log :set nonumber nowrap ]]
 
 -------------------------------  CUSTOM OPTIONS ---------------------------
+
+vim.g.luasnippets_path = {'~/.config/my-snippets', '~/.config/friendly-snippets'}
