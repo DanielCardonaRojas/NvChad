@@ -12,7 +12,7 @@ local homeDir = os.getenv('HOME')
 
 local devterm = Terminal:new({
   count = 2,
-  direction = "horizontal",
+  direction = "float",
   persist_size = false,
   size = 25,
 })
