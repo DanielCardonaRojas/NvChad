@@ -1,7 +1,7 @@
 local M = {}
 
 M.ui = {
-   transparency = false,
+   transparency = true,
    theme = "catppuccin",
    theme_toggle = { "catppuccin", "everforest_light" },
 }
@@ -96,6 +96,7 @@ M.plugins = {
       },
       ["nvim-treesitter/nvim-treesitter"] = {
           ensure_installed = {
+            "lua",
             "dart",
             "swift",
             "bash",
